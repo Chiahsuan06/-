@@ -1,0 +1,164 @@
+﻿using DBSource;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace 動態問卷系統.前台
+{
+    public partial class 前台列表頁 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            this.GridView1.DataSource = GetDBData();  ///讓GridView1顯示DB的資料
+            this.GridView1.DataBind();
+        }
+
+        protected void btnFind_Click(object sender, EventArgs e)  //要解決沒有填的問題
+        {
+            //string findTitle = this.txtTitle.Text;
+            //DateTime findStart = Convert.ToDateTime(this.txtStart.Text);
+            //DateTime findEnd = Convert.ToDateTime(this.txtEnd.Text);
+            
+            if (this.txtTitle.Text != null || this.txtStart.Text != null || this.txtEnd.Text != null) 
+            {
+                string findTitle = this.txtTitle.Text;
+                DateTime findStart = Convert.ToDateTime(this.txtStart.Text);   //一直顯示轉型有問題??
+                DateTime findEnd = Convert.ToDateTime(this.txtEnd.Text);       //一直顯示轉型有問題??
+
+                var dt = findData(findTitle, findStart, findEnd);
+                DataSearch(dt);
+            }
+        }
+        private void DataSearch(DataTable dt)
+        {
+            if (dt.Rows.Count > 0) //check is empty data (大於0就做資料繫結)
+            {
+                var dtPaged = this.GetPagedDataTable(dt);
+
+                this.GridView1.DataSource = dtPaged;
+                this.GridView1.DataBind();
+                //this.ucPager.Visible = true;
+            }
+            else
+            {
+                this.GridView1.Visible = false;
+                this.lblMessage.Visible = true;
+                this.lblMessage.Text = "請重新搜尋";
+            }
+        }
+        private int GetCurrentPage()
+        {
+            string pageText = Request.QueryString["Page"];
+
+            if (string.IsNullOrWhiteSpace(pageText))
+                return 1;
+
+            int intPage;
+            if (!int.TryParse(pageText, out intPage))
+                return 1;
+
+            if (intPage <= 0)
+                return 1;
+
+            return intPage;
+        }
+        private DataTable GetPagedDataTable(DataTable dt)
+        {
+            DataTable dtPaged = dt.Clone();
+            //int pageSize = this.ucPager.PageSize;
+
+
+            int startIndex = (this.GetCurrentPage() - 1) * 10;
+            int endIndex = (this.GetCurrentPage()) * 10;
+
+            if (endIndex > dt.Rows.Count)
+                endIndex = dt.Rows.Count;
+
+            for (var i = startIndex; i < endIndex; i++)
+            {
+                DataRow dr = dt.Rows[i];
+                var drNew = dtPaged.NewRow();
+
+                foreach (DataColumn dc in dt.Columns)
+                {
+                    drNew[dc.ColumnName] = dr[dc];
+                }
+
+                dtPaged.Rows.Add(drNew);
+            }
+            return dtPaged;
+        }
+
+        /// <summary>
+        /// 顯示資料
+        /// </summary>
+        /// <returns></returns>
+        public static DataTable GetDBData()
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"SELECT [Number],[Heading],[Vote],[StartTime],[EndTime]
+                    FROM [Outline]
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 搜尋
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static DataTable findData(string Title, DateTime Start, DateTime End)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@" SELECT [Number],[Heading],[StartTime],[EndTime]
+                    FROM [Outline]
+                    WHERE [Heading] LIKE '@Title%'
+                    OR [Start Time] = '@Start'
+                    OR [End Time] = '@End'
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@Title", Title));
+            list.Add(new SqlParameter("@Start", Start));
+            list.Add(new SqlParameter("@End", End));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)  //如何寫入Session or 其他方式
+        {
+            var item = e.CommandSource as System.Web.UI.WebControls.Button;
+            var container = item.NamingContainer;
+
+            if (string.Compare("goPage", item.ID, true) == 0)
+            { 
+                this.Session["QuestionnaireNum"] = container;
+            }
+        }
+    }
+}
