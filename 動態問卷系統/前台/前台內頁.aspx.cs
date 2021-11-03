@@ -89,13 +89,22 @@ namespace 動態問卷系統.前台
         
         protected void btnSent_Click(object sender, EventArgs e)
         {
-            this.Session["Name"] = this.txtbName.Text;
-            this.Session["Phone"] = this.txtbPhone.Text;
-            this.Session["Email"] = this.txtbEmail.Text;
-            this.Session["Age"] = this.txtbAge.Text;
+            if (string.IsNullOrEmpty(this.txtbName.Text) || string.IsNullOrEmpty(this.txtbPhone.Text) || string.IsNullOrEmpty(this.txtbEmail.Text) || string.IsNullOrEmpty(this.txtbAge.Text))
+            {
+                this.plcNoWriteData.Visible = true;
+            }
+            else 
+            {
+                this.plcNoWriteData.Visible = false;
 
-            MessageBox.Show($"即將前往確認頁面，請確認填寫的資訊是否正確", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Response.Redirect("/前台/前台確認頁.aspx");
+                this.Session["Name"] = this.txtbName.Text;
+                this.Session["Phone"] = this.txtbPhone.Text;
+                this.Session["Email"] = this.txtbEmail.Text;
+                this.Session["Age"] = this.txtbAge.Text;
+
+                MessageBox.Show($"即將前往確認頁面，請確認填寫的資訊是否正確", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Response.Redirect("/前台/前台確認頁.aspx");
+            }
         }
     }
 }

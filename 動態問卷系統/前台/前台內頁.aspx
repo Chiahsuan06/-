@@ -37,6 +37,11 @@
             <asp:Label ID="lblAge" runat="server" Text="年齡："></asp:Label>
             <asp:TextBox ID="txtbAge" runat="server"></asp:TextBox>
         </div>
+        
+        <asp:PlaceHolder ID="plcNoWriteData" runat="server" Visible="false">
+            <p style="color: red; background-color:lightgoldenrodyellow">姓名、手機、Email、年齡 皆為必填</p>
+        </asp:PlaceHolder>
+
         <div>  <%--題目--%>
 
         </div>

@@ -57,10 +57,11 @@ namespace 動態問卷系統.前台
         /// 會回到填寫頁
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="e"></param>  
+        //跳得回去但沒有帶Session
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/ 前台 / 前台內頁.aspx");
+            Response.Redirect("/前台/前台內頁.aspx");
         }
 
         /// <summary>
@@ -76,9 +77,13 @@ namespace 動態問卷系統.前台
             int Age = Convert.ToInt32(this.ltlAge.Text);
 
             //這邊要做一個詢問是否送出
-            sentData(Name, Phone, Email, Age);
+            DialogResult result = MessageBox.Show($"請確認是否送出問卷", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (result == DialogResult.OK) 
+            {
+                sentData(Name, Phone, Email, Age);
+            }
             MessageBox.Show($"資料送出成功，即將返回列表頁", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Response.Redirect("/ 前台 / 前台列表頁.aspx");
+            Response.Redirect("/前台/前台列表頁.aspx");
         }
 
         /// <summary>
