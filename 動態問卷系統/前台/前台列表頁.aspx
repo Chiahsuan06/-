@@ -14,8 +14,8 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblTitle" runat="server" Text="問卷標題："></asp:Label><asp:TextBox ID="txtTitle" runat="server" TextMode="Search"></asp:TextBox><br />
-            <asp:Label ID="lblStart" runat="server" Text="開始時間："></asp:Label><asp:TextBox ID="txtStart" runat="server" TextMode="DateTime"></asp:TextBox>&nbsp;&nbsp;
-            <asp:Label ID="lblEnd" runat="server" Text="結束時間："></asp:Label><asp:TextBox ID="txtEnd" runat="server" TextMode="DateTime"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblStart" runat="server" Text="開始時間："></asp:Label><asp:TextBox ID="txtStart" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;
+            <asp:Label ID="lblEnd" runat="server" Text="結束時間："></asp:Label><asp:TextBox ID="txtEnd" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnFind" runat="server" Text="搜尋" OnClick="btnFind_Click" />
         </div>
         <div>

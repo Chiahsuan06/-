@@ -15,7 +15,7 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string IDNumber = this.Session["QuestionnaireNum"] as string;   //先寫死 "1"
+            string IDNumber = "1";   //先寫死 "1"
                             //this.Session["QuestionnaireNum"] as string
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
@@ -74,6 +74,7 @@ namespace 動態問卷系統.前台
                 return null;
             }
         }
+        //問卷題目
 
         /// <summary>
         /// 按鈕

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 
 namespace 動態問卷系統.前台
 {
@@ -18,21 +19,28 @@ namespace 動態問卷系統.前台
             this.GridView1.DataBind();
         }
 
-        protected void btnFind_Click(object sender, EventArgs e)  //要解決沒有填的問題
+        protected void btnFind_Click(object sender, EventArgs e)
         {
-            //string findTitle = this.txtTitle.Text;
-            //DateTime findStart = Convert.ToDateTime(this.txtStart.Text);
-            //DateTime findEnd = Convert.ToDateTime(this.txtEnd.Text);
-            
-            if (this.txtTitle.Text != null || this.txtStart.Text != null || this.txtEnd.Text != null) 
+            if (string.IsNullOrEmpty(this.txtStart.Text))
             {
-                string findTitle = this.txtTitle.Text;
-                DateTime findStart = Convert.ToDateTime(this.txtStart.Text);   //一直顯示轉型有問題??
-                DateTime findEnd = Convert.ToDateTime(this.txtEnd.Text);       //一直顯示轉型有問題??
-
-                var dt = findData(findTitle, findStart, findEnd);
-                DataSearch(dt);
+                this.txtStart.Text = DateTime.Today.ToString("yyyy/MM/dd");
             }
+            if (string.IsNullOrEmpty(this.txtEnd.Text))
+            {
+                this.txtEnd.Text = DateTime.Today.ToString("yyyy/MM/dd");
+            }
+          
+            string findTitle = this.txtTitle.Text;
+            DateTime findStart = Convert.ToDateTime(this.txtStart.Text);
+            DateTime findEnd = Convert.ToDateTime(this.txtEnd.Text);
+
+            if (findStart > findEnd)   //日期檢查
+            { 
+                MessageBox.Show($"開始時間大於結束時間，請重新填寫", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??
+            DataSearch(dt);
         }
         private void DataSearch(DataTable dt)
         {
@@ -48,7 +56,7 @@ namespace 動態問卷系統.前台
             {
                 this.GridView1.Visible = false;
                 this.lblMessage.Visible = true;
-                this.lblMessage.Text = "請重新搜尋";
+                this.lblMessage.Text = "請重新搜尋";   //按搜尋，一直跳到這裡....
             }
         }
         private int GetCurrentPage()
@@ -71,7 +79,6 @@ namespace 動態問卷系統.前台
         {
             DataTable dtPaged = dt.Clone();
             //int pageSize = this.ucPager.PageSize;
-
 
             int startIndex = (this.GetCurrentPage() - 1) * 10;
             int endIndex = (this.GetCurrentPage()) * 10;
@@ -127,11 +134,11 @@ namespace 動態問卷系統.前台
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@" SELECT [Number],[Heading],[StartTime],[EndTime]
+                $@" SELECT [Number],[Heading],[Vote],[StartTime],[EndTime]
                     FROM [Outline]
                     WHERE [Heading] LIKE '@Title%'
-                    OR [Start Time] = '@Start'
-                    OR [End Time] = '@End'
+                    OR [StartTime] = @Start
+                    OR [EndTime] = @End
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
