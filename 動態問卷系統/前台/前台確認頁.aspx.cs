@@ -15,8 +15,7 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string IDNumber = "6";   //先寫死 
-                                     //this.Session["QuestionnaireNum"] as string
+            string IDNumber = this.Request.QueryString["ID"];
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
 

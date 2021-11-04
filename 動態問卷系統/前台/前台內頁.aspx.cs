@@ -15,16 +15,15 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string IDNumber = "6";   //先寫死 
-                            //this.Session["QuestionnaireNum"] as string
+            string IDNumber = this.Request.QueryString["ID"];
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
 
             this.reContent.DataSource = GetContent(IDNumber);
             this.reContent.DataBind();
 
-           // Guid QuestionnaireID = "2E16818C-CB64-44B3-A491-882773558BA1"; //尋問毛豆
-           // this.reTopicOptions.DataSource = GetTopicOptions(QuestionnaireID);
+            string QuestionnaireID = "2E16818C-CB64-44B3-A491-882773558BA1"; //尋問毛豆
+            this.reTopicOptions.DataSource = GetTopicOptions(QuestionnaireID);
             this.reTopicOptions.DataBind();
         }
 
@@ -80,7 +79,7 @@ namespace 動態問卷系統.前台
             }
         }
         //問卷題目、選項
-        public static DataTable GetTopicOptions(Guid QuestionnaireID)   //要改成用TopicID或QuestionnaireID找
+        public static DataTable GetTopicOptions(string QuestionnaireID)   //要改成用TopicID或QuestionnaireID找
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
