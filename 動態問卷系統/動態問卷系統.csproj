@@ -89,6 +89,7 @@
     <Compile Include="Models\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControl\ucPager.ascx.cs">
       <DependentUpon>ucPager.ascx</DependentUpon>

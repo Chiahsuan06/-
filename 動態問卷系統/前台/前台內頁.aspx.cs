@@ -15,13 +15,17 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string IDNumber = "1";   //先寫死 "1"
+            string IDNumber = "6";   //先寫死 
                             //this.Session["QuestionnaireNum"] as string
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
 
             this.reContent.DataSource = GetContent(IDNumber);
             this.reContent.DataBind();
+
+           // Guid QuestionnaireID = "2E16818C-CB64-44B3-A491-882773558BA1"; //尋問毛豆
+           // this.reTopicOptions.DataSource = GetTopicOptions(QuestionnaireID);
+            this.reTopicOptions.DataBind();
         }
 
         /// <summary>
@@ -40,6 +44,7 @@ namespace 動態問卷系統.前台
 
             List<SqlParameter> list = new List<SqlParameter>();
             list.Add(new SqlParameter("@IDNumber", IDNumber));
+
 
             try
             {
@@ -74,8 +79,52 @@ namespace 動態問卷系統.前台
                 return null;
             }
         }
-        //問卷題目
+        //問卷題目、選項
+        public static DataTable GetTopicOptions(Guid QuestionnaireID)   //要改成用TopicID或QuestionnaireID找
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"SELECT [Topic], [Options]
+                    FROM [Question]
+                    WHERE QuestionnaireID = @QuestionnaireID
+                ";
 
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@QuestionnaireID", QuestionnaireID));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+
+        public static DataTable GetQuestionnaireID(string IDNumber) 
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"SELECT [QuestionnaireID]
+                    FROM [Outline]
+                    WHERE Number = @IDNumber
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@IDNumber", IDNumber));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }  //取得QuestionnaireID
         /// <summary>
         /// 按鈕
         /// </summary>

@@ -42,8 +42,17 @@
             <p style="color: red; background-color:lightgoldenrodyellow">姓名、手機、Email、年齡 皆為必填</p>
         </asp:PlaceHolder>
 
-        <div>  <%--題目--%>
-
+        <div>  <%--題目、選項--%>
+            <asp:Repeater ID="reTopicOptions" runat="server">
+                <ItemTemplate>
+                    <p>
+                        <%#Eval("Topic") %>
+                    </p>
+                    <p>
+                        <%#Eval("Options") %>
+                    </p>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
         <div>
             <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />

@@ -15,7 +15,7 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string IDNumber = "1";   //先寫死 "1"
+            string IDNumber = "6";   //先寫死 
                                      //this.Session["QuestionnaireNum"] as string
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
@@ -76,11 +76,11 @@ namespace 動態問卷系統.前台
             string Email = this.ltlEmail.Text;
             int Age = Convert.ToInt32(this.ltlAge.Text);
 
-            //這邊要做一個詢問是否送出
+            //詢問是否送出
             DialogResult result = MessageBox.Show($"請確認是否送出問卷", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
             if (result == DialogResult.OK) 
             {
-                sentData(Name, Phone, Email, Age);
+                sentUserInformation(Name, Phone, Email, Age);
             }
             MessageBox.Show($"資料送出成功，即將返回列表頁", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Response.Redirect("/前台/前台列表頁.aspx");
@@ -91,7 +91,7 @@ namespace 動態問卷系統.前台
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static DataTable sentData(string Name, int Phone, string Email, int Age)
+        public static DataTable sentUserInformation(string Name, int Phone, string Email, int Age)
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
@@ -115,5 +115,7 @@ namespace 動態問卷系統.前台
                 return null;
             }
         }
+
+        //這邊還有問卷問題的選擇
     }
 }

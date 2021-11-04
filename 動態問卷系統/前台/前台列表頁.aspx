@@ -9,10 +9,15 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>前台列表頁</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 67px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div class="auto-style1">
             <asp:Label ID="lblTitle" runat="server" Text="問卷標題："></asp:Label><asp:TextBox ID="txtTitle" runat="server" TextMode="Search"></asp:TextBox><br />
             <asp:Label ID="lblStart" runat="server" Text="開始時間："></asp:Label><asp:TextBox ID="txtStart" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;
             <asp:Label ID="lblEnd" runat="server" Text="結束時間："></asp:Label><asp:TextBox ID="txtEnd" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;

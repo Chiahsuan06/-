@@ -39,7 +39,7 @@ namespace 動態問卷系統.前台
                 MessageBox.Show($"開始時間大於結束時間，請重新填寫", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??
+            var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??....問毛豆了
             DataSearch(dt);
         }
         private void DataSearch(DataTable dt)
@@ -56,7 +56,7 @@ namespace 動態問卷系統.前台
             {
                 this.GridView1.Visible = false;
                 this.lblMessage.Visible = true;
-                this.lblMessage.Text = "請重新搜尋";   //按搜尋，一直跳到這裡....
+                this.lblMessage.Text = "請重新搜尋";   //按搜尋，一直跳到這裡....問毛豆了
             }
         }
         private int GetCurrentPage()
