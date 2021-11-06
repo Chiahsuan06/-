@@ -69,12 +69,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="jQuery\jQuery3.6.0.js" />
     <Content Include="UserControl\ucPager.ascx" />
     <Content Include="Web.config" />
     <Content Include="前台\前台內頁.aspx" />
     <Content Include="前台\前台列表頁.aspx" />
     <Content Include="前台\前台確認頁.aspx" />
     <Content Include="前台\前台統計頁.aspx" />
+    <Content Include="後台\常用問題管理.aspx" />
     <Content Include="後台\後台內頁1.aspx" />
     <Content Include="後台\後台列表頁.aspx" />
   </ItemGroup>
@@ -125,6 +127,13 @@
     </Compile>
     <Compile Include="前台\前台統計頁.aspx.designer.cs">
       <DependentUpon>前台統計頁.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="後台\常用問題管理.aspx.cs">
+      <DependentUpon>常用問題管理.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="後台\常用問題管理.aspx.designer.cs">
+      <DependentUpon>常用問題管理.aspx</DependentUpon>
     </Compile>
     <Compile Include="後台\後台內頁1.aspx.cs">
       <DependentUpon>後台內頁1.aspx</DependentUpon>

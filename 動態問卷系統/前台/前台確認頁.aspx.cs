@@ -17,7 +17,7 @@ namespace 動態問卷系統.前台
         {
             string IDNumber = this.Request.QueryString["ID"];
             this.reHeading.DataSource = GetHeading(IDNumber);
-            this.reHeading.DataBind();
+            this.reHeading.DataBind(); 
 
             this.ltlName.Text = Session["Name"] as string; 
             this.ltlPhone.Text = Session["Phone"] as string; 
@@ -57,9 +57,13 @@ namespace 動態問卷系統.前台
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>  
-        //跳得回去但沒有帶Session
+        //跳得回去但沒有帶Session =>未實作
         protected void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Session["Name"] = this.ltlName.Text;
+            this.Session["Phone"] = this.ltlPhone.Text;
+            this.Session["Email"] = this.ltlEmail.Text;
+            this.Session["Age"] = this.ltlAge.Text;
             Response.Redirect("/前台/前台內頁.aspx");
         }
 

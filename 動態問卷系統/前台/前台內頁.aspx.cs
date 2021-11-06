@@ -137,6 +137,13 @@ namespace 動態問卷系統.前台
         
         protected void btnSent_Click(object sender, EventArgs e)
         {
+            if (this.Session["Name"] != null || this.Session["Phone"] != null || this.Session["Email"] != null || this.Session["Age"] != null)
+            {
+                this.txtbName.Text = this.Session["Name"] as string;
+                this.txtbPhone.Text = this.Session["Phone"] as string;
+                this.txtbEmail.Text = this.Session["Email"] as string;
+                this.txtbAge.Text = this.Session["Age"] as string;
+            }
             if (string.IsNullOrEmpty(this.txtbName.Text) || string.IsNullOrEmpty(this.txtbPhone.Text) || string.IsNullOrEmpty(this.txtbEmail.Text) || string.IsNullOrEmpty(this.txtbAge.Text))
             {
                 this.plcNoWriteData.Visible = true;

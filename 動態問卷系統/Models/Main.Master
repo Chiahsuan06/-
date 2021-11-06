@@ -11,10 +11,22 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+        <h1>後台 - 問卷管理</h1>
+        <table>
+            <tr>
+                <td>
+                    <a href="../後台/後台列表頁.aspx">問卷管理</a>
+                    <br /><br />
+                    <a href="../後台/常用問題管理.aspx">常用問題管理</a>
+                </td>
+                <td>
+                    <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>
