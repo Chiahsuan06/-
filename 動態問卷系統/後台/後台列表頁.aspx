@@ -12,7 +12,7 @@
             <asp:TextBox ID="txtStart" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;
             <asp:Label ID="lblEnd" runat="server" Text="結束時間："></asp:Label>
             <asp:TextBox ID="txtEnd" runat="server" TextMode="Date"></asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnFind" runat="server" Text="搜尋" OnClick="btnFind_Click" />
+            <asp:Button ID="btnFind" runat="server" Text="搜尋" />
         </div>
     <br />
         <div>
