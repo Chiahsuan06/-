@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\add.png" />
+    <Content Include="Images\bin.png" />
     <Content Include="jQuery\jQuery3.6.0.js" />
     <Content Include="UserControl\ucPager.ascx" />
     <Content Include="Web.config" />

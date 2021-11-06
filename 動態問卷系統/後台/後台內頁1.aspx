@@ -99,7 +99,7 @@
             <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label><p>(多個答案以；分隔)</p>
             <asp:Button ID="btnAddIn" runat="server" Text="加入" />
 
-            <asp:Image ID="Image1" runat="server" /><%--垃圾桶圖示--%>
+            <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" />
             <asp:GridView ID="givQuestion" runat="server"></asp:GridView>
             <asp:Button ID="btngivCancel" runat="server" Text="取消" /><asp:Button ID="btngivSent" runat="server" Text="送出" />
         </div>
@@ -110,7 +110,17 @@
             <%--分頁--%>
 
             <asp:PlaceHolder ID="PlaceHolderDetail" runat="server">
+                <div>
+                    <asp:Label ID="plblName" runat="server" Text="姓名"></asp:Label><asp:Literal ID="pltlName" runat="server"></asp:Literal>
+                    <asp:Label ID="plblPhone" runat="server" Text="手機"></asp:Label><asp:Literal ID="pltlPhone" runat="server"></asp:Literal>
+                    <asp:Label ID="plblEmail" runat="server" Text="Email"></asp:Label><asp:Literal ID="pltlEmail" runat="server"></asp:Literal>
+                    <asp:Label ID="plblAge" runat="server" Text="年齡"></asp:Label><asp:Literal ID="pltlAge" runat="server"></asp:Literal>
 
+                    <asp:Label ID="lblWriteT" runat="server" Text="填寫時間：<%# %>"></asp:Label>  <%--連結時間--%>
+                </div>
+                <div>
+                    <%--跳出填答問卷--%>
+                </div>
             </asp:PlaceHolder>
 
         </div>
