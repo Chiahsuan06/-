@@ -123,13 +123,22 @@ namespace 動態問卷系統.前台
         protected global::System.Web.UI.WebControls.PlaceHolder plcNoWriteData;
 
         /// <summary>
-        /// reTopicOptions 控制項。
+        /// reTopic 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater reTopicOptions;
+        protected global::System.Web.UI.WebControls.Repeater reTopic;
+
+        /// <summary>
+        /// reOptions 控制項。
+        /// </summary>
+        /// <remarks>
+        /// 自動產生的欄位。
+        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater reOptions;
 
         /// <summary>
         /// btnCancel 控制項。

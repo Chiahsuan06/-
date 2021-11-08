@@ -43,11 +43,16 @@
         </asp:PlaceHolder>
 
         <div>  <%--題目、選項--%>
-            <asp:Repeater ID="reTopicOptions" runat="server">
+            <asp:Repeater ID="reTopic" runat="server">
                 <ItemTemplate>
                     <p>
                         <%#Eval("TopicDescription") %>
                     </p>
+
+                </ItemTemplate>
+            </asp:Repeater>
+            <asp:Repeater ID="reOptions" runat="server">
+                <ItemTemplate>
                     <p>
                         <%#Eval("OptionsDescription") %>
                     </p>

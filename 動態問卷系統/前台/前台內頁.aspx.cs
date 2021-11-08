@@ -22,8 +22,11 @@ namespace 動態問卷系統.前台
             this.reContent.DataSource = GetContent(IDNumber);
             this.reContent.DataBind();
 
-            this.reTopicOptions.DataSource = GetTopicOptions(IDNumber);
-            this.reTopicOptions.DataBind();
+            this.reTopic.DataSource = GetTopic(IDNumber);
+            this.reTopic.DataBind();
+
+            this.reOptions.DataSource = GetOptions(IDNumber);
+            this.reOptions.DataBind();
         }
 
         /// <summary>
@@ -77,8 +80,31 @@ namespace 動態問卷系統.前台
                 return null;
             }
         }
-        //問卷題目、選項 
-        public static DataTable GetTopicOptions(string IDNumber)   
+        //問卷題目
+        public static DataTable GetTopic(string IDNumber)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"SELECT [Questionnaires].[TopicNum], [TopicDescription]
+                    FROM [Questionnaires]
+                    WHERE QuestionnaireID = @QuestionnaireID
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@QuestionnaireID", IDNumber));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+        //問卷選項
+        public static DataTable GetOptions(string IDNumber)   
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
