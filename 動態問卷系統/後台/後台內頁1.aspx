@@ -6,14 +6,12 @@
         <style>
             body {font-family: Arial;}
 
-            /* Style the tab */
             .tab {
               overflow: hidden;
               border: 1px solid #ccc;
               background-color: #f1f1f1;
             }
 
-            /* Style the buttons inside the tab */
             .tab button {
               background-color: inherit;
               float: left;
@@ -25,17 +23,14 @@
               font-size: 17px;
             }
 
-            /* Change background color of buttons on hover */
             .tab button:hover {
               background-color: #ddd;
             }
 
-            /* Create an active/current tablink class */
             .tab button.active {
               background-color: #ccc;
             }
 
-            /* Style the tab content */
             .tabcontent {
               display: none;
               padding: 6px 12px;
@@ -73,34 +68,34 @@
         </div>
 
         <div id="Questionnaire" class="tabcontent">
-            <asp:Label ID="lblQuestaireName" runat="server" Text="問卷名稱"></asp:Label>
+            <asp:Label ID="lblQuestaireName" runat="server" Text="問卷名稱"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtQuestaireName" runat="server"></asp:TextBox>
-            
-            <asp:Label ID="lblContent" runat="server" Text="描述內容"></asp:Label>
+            <br />
+            <asp:Label ID="lblContent" runat="server" Text="描述內容"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"></asp:TextBox>
-            
-            <asp:Label ID="lblStartT" runat="server" Text="開始時間"></asp:Label>
+            <br />
+            <asp:Label ID="lblStartT" runat="server" Text="開始時間"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtStartT" runat="server" TextMode="Date"></asp:TextBox>
-
-            <asp:Label ID="lblEndT" runat="server" Text="結束時間"></asp:Label>
+            <br />
+            <asp:Label ID="lblEndT" runat="server" Text="結束時間"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtEndT" runat="server" TextMode="Date"></asp:TextBox>
-
+            <br />
             <asp:CheckBox ID="ckbActivated" runat="server" /><asp:Label ID="lblActivated" runat="server" Text="已啟用"></asp:Label>
-
-            <asp:Button ID="btnCancel" runat="server" Text="取消" /><asp:Button ID="btnSent" runat="server" Text="送出" />
+            <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnCancel" runat="server" Text="取消" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSent" runat="server" Text="送出" />
         </div>
 
         <div id="Question" class="tabcontent">
-            <asp:Label ID="lblType" runat="server" Text="種類"></asp:Label>
+            <asp:Label ID="lblType" runat="server" Text="種類"></asp:Label>&nbsp;&nbsp;
             <asp:DropDownList ID="ddlType" runat="server"></asp:DropDownList>
-
-            <asp:Label ID="lblQuestion" runat="server" Text="問題"></asp:Label>
-            <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>
+            <br />
+            <asp:Label ID="lblQuestion" runat="server" Text="問題"></asp:Label>&nbsp;&nbsp;
+            <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>&nbsp;&nbsp;<asp:DropDownList ID="ddlChoose" runat="server"></asp:DropDownList>&nbsp;&nbsp;
             <asp:CheckBox ID="ckbRequired" runat="server" /><asp:Label ID="lblRequired" runat="server" Text="必填"></asp:Label>
-
-            <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label><p>(多個答案以；分隔)</p>
+            <br />
+            <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label><p>(多個答案以；分隔)</p>&nbsp;&nbsp;
             <asp:Button ID="btnAddIn" runat="server" Text="加入" />
-
+            <br />
             <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" />
             <asp:GridView ID="givQuestion" runat="server"></asp:GridView>
             <asp:Button ID="btngivCancel" runat="server" Text="取消" Height="29px" Width="34px" /><asp:Button ID="btngivSent" runat="server" Text="送出" Height="29px" Width="34px" />
