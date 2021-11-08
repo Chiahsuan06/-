@@ -22,8 +22,7 @@ namespace 動態問卷系統.前台
             this.reContent.DataSource = GetContent(IDNumber);
             this.reContent.DataBind();
 
-            string QuestionnaireID = "2E16818C-CB64-44B3-A491-882773558BA1"; //尋問毛豆
-            this.reTopicOptions.DataSource = GetTopicOptions(QuestionnaireID);
+            this.reTopicOptions.DataSource = GetTopicOptions(IDNumber);
             this.reTopicOptions.DataBind();
         }
 
@@ -38,11 +37,11 @@ namespace 動態問卷系統.前台
             string dbcommand =
                 $@"SELECT [Heading]
                     FROM [Outline]
-                    WHERE Number = @IDNumber
+                    WHERE QuestionnaireID = @QuestionnaireID
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@IDNumber", IDNumber));
+            list.Add(new SqlParameter("@QuestionnaireID", IDNumber));
 
 
             try
@@ -62,34 +61,35 @@ namespace 動態問卷系統.前台
             string dbcommand =
                 $@"SELECT [Content]
                     FROM [Outline]
-                    WHERE Number = @IDNumber
-                ";
-
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@IDNumber", IDNumber));
-
-            try
-            {
-                return DBHelper.ReadDataTable(connStr, dbcommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }
-        //問卷題目、選項
-        public static DataTable GetTopicOptions(string QuestionnaireID)   //要改成用TopicID或QuestionnaireID找
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbcommand =
-                $@"SELECT [Topic], [Options]
-                    FROM [Question]
                     WHERE QuestionnaireID = @QuestionnaireID
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@QuestionnaireID", QuestionnaireID));
+            list.Add(new SqlParameter("@QuestionnaireID", IDNumber));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
+            }
+        }
+        //問卷題目、選項 
+        public static DataTable GetTopicOptions(string IDNumber)   
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"SELECT [Questionnaires].[TopicNum], [TopicDescription],[OptionsNum],[OptionsDescription]
+                    FROM [Questionnaires]
+                    JOIN Question ON [Question].TopicNum=[Questionnaires].[TopicNum]
+                    WHERE QuestionnaireID = @QuestionnaireID
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@QuestionnaireID", IDNumber));
 
             try
             {
@@ -102,28 +102,6 @@ namespace 動態問卷系統.前台
             }
         }
 
-        public static DataTable GetQuestionnaireID(string IDNumber) 
-        {
-            string connStr = DBHelper.GetConnectionString();
-            string dbcommand =
-                $@"SELECT [QuestionnaireID]
-                    FROM [Outline]
-                    WHERE Number = @IDNumber
-                ";
-
-            List<SqlParameter> list = new List<SqlParameter>();
-            list.Add(new SqlParameter("@IDNumber", IDNumber));
-
-            try
-            {
-                return DBHelper.ReadDataTable(connStr, dbcommand, list);
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteLog(ex);
-                return null;
-            }
-        }  //取得QuestionnaireID
         /// <summary>
         /// 按鈕
         /// </summary>

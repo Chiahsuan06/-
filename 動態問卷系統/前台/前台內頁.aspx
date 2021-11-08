@@ -46,10 +46,10 @@
             <asp:Repeater ID="reTopicOptions" runat="server">
                 <ItemTemplate>
                     <p>
-                        <%#Eval("Topic") %>
+                        <%#Eval("TopicDescription") %>
                     </p>
                     <p>
-                        <%#Eval("Options") %>
+                        <%#Eval("OptionsDescription") %>
                     </p>
                 </ItemTemplate>
             </asp:Repeater>

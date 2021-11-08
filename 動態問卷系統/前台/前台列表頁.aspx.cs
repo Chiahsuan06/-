@@ -39,6 +39,8 @@ namespace 動態問卷系統.前台
                 MessageBox.Show($"開始時間大於結束時間，請重新填寫", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
+            this.GridView1.DataSource = findData(findTitle, findStart, findEnd);
+            this.GridView1.DataBind();
             var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??....問毛豆了
             DataSearch(dt);
         }
@@ -109,7 +111,7 @@ namespace 動態問卷系統.前台
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@"SELECT [Number],[Heading],[Vote],[StartTime],[EndTime]
+                $@"SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
                     FROM [Outline]
                 ";
 
@@ -130,11 +132,11 @@ namespace 動態問卷系統.前台
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static DataTable findData(string Title, DateTime Start, DateTime End)
+        public static DataTable findData(string Title, DateTime Start, DateTime End)   //為什麼搜尋不到，SQL找得到?? =>寄件問
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@" SELECT [Number],[Heading],[Vote],[StartTime],[EndTime]
+                $@" SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
                     FROM [Outline]
                     WHERE [Heading] LIKE '@Title%'
                     OR [StartTime] = @Start

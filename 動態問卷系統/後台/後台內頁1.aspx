@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="後台內頁1.aspx.cs" Inherits="動態問卷系統.後台.後台內頁1" MaintainScrollPositionOnPostback="True" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="後台內頁1.aspx.cs" Inherits="動態問卷系統.後台.後台內頁1"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -45,7 +45,7 @@
         </style>
 
         <script>
-            function openCity(evt, idName) {
+            function openQuestionnaire(evt, idName) {
 
                 var i, tabcontent, tablinks;
                 tabcontent = document.getElementsByClassName("tabcontent");
@@ -61,13 +61,15 @@
                 document.getElementById(idName).style.display = "block";
                 evt.currentTarget.className += " active";
             }
+
+            document.getElementById("defaultOpen").click();
         </script>
 
         <div class="tab">
-          <button class="tablinks" onclick="openCity(event, 'Questionnaire')">問卷</button>
-          <button class="tablinks" onclick="openCity(event, 'Question')">問題</button>
-          <button class="tablinks" onclick="openCity(event, 'WriteInformation')">填寫資料</button>
-          <button class="tablinks" onclick="openCity(event, 'Statistics')">統計</button>
+          <button class="tablinks" onclick="openQuestionnaire(event, 'Questionnaire')" id="defaultOpen">問卷</button>
+          <button class="tablinks" onclick="openQuestionnaire(event, 'Question')">問題</button>
+          <button class="tablinks" onclick="openQuestionnaire(event, 'WriteInformation')">填寫資料</button>
+          <button class="tablinks" onclick="openQuestionnaire(event, 'Statistics')">統計</button>
         </div>
 
         <div id="Questionnaire" class="tabcontent">
@@ -101,7 +103,7 @@
 
             <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" />
             <asp:GridView ID="givQuestion" runat="server"></asp:GridView>
-            <asp:Button ID="btngivCancel" runat="server" Text="取消" /><asp:Button ID="btngivSent" runat="server" Text="送出" />
+            <asp:Button ID="btngivCancel" runat="server" Text="取消" Height="29px" Width="34px" /><asp:Button ID="btngivSent" runat="server" Text="送出" Height="29px" Width="34px" />
         </div>
 
         <div id="WriteInformation" class="tabcontent">
