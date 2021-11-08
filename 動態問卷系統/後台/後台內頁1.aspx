@@ -75,14 +75,15 @@
             <asp:TextBox ID="txtContent" runat="server" TextMode="MultiLine"></asp:TextBox>
             <br />
             <asp:Label ID="lblStartT" runat="server" Text="開始時間"></asp:Label>&nbsp;&nbsp;
-            <asp:TextBox ID="txtStartT" runat="server" TextMode="Date"></asp:TextBox>
+            <asp:TextBox ID="txtStartT" runat="server" TextMode="Date" ></asp:TextBox>
             <br />
             <asp:Label ID="lblEndT" runat="server" Text="結束時間"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtEndT" runat="server" TextMode="Date"></asp:TextBox>
             <br />
-            <asp:CheckBox ID="ckbActivated" runat="server" /><asp:Label ID="lblActivated" runat="server" Text="已啟用"></asp:Label>
+            <asp:CheckBox ID="ckbActivated" runat="server" Checked="True" /><asp:Label ID="lblActivated" runat="server" Text="已啟用"></asp:Label>
             <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnCancel" runat="server" Text="取消" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSent" runat="server" Text="送出" />
+            <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Red" ></asp:Label>
+            <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSent" runat="server" Text="送出" OnClick="btnSent_Click" />
         </div>
 
         <div id="Question" class="tabcontent">

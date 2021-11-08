@@ -43,7 +43,7 @@ namespace 動態問卷系統.後台
         }
         
         /// <summary>
-        /// 新增問卷
+        /// 新增問卷或更新問卷(問毛豆)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
