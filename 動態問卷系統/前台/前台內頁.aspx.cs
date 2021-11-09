@@ -15,6 +15,8 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.Request.QueryString["ID"] == null) { Response.Redirect("/前台/前台列表頁.aspx"); }
+
             string IDNumber = this.Request.QueryString["ID"];
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
@@ -38,7 +40,7 @@ namespace 動態問卷系統.前台
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@"SELECT [Heading]
+                $@"SELECT [Heading],[Vote],[StartTime],[EndTime]
                     FROM [Outline]
                     WHERE QuestionnaireID = @QuestionnaireID
                 ";

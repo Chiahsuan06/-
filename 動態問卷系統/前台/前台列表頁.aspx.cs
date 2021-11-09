@@ -41,12 +41,12 @@ namespace 動態問卷系統.前台
 
             this.GridView1.DataSource = findData(findTitle, findStart, findEnd);
             this.GridView1.DataBind();
-            var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??....問毛豆了
+            var dt = findData(findTitle, findStart, findEnd);  //這個部分是否有缺??....
             DataSearch(dt);
         }
         private void DataSearch(DataTable dt)
         {
-            if (dt.Rows.Count > 0) //check is empty data (大於0就做資料繫結)
+            if (dt.Rows.Count > 0) 
             {
                 var dtPaged = this.GetPagedDataTable(dt);
 
@@ -58,7 +58,7 @@ namespace 動態問卷系統.前台
             {
                 this.GridView1.Visible = false;
                 this.lblMessage.Visible = true;
-                this.lblMessage.Text = "請重新搜尋";   //按搜尋，一直跳到這裡....問毛豆了
+                this.lblMessage.Text = "請重新搜尋";   //按搜尋，一直跳到這裡....
             }
         }
         private int GetCurrentPage()
@@ -104,15 +104,23 @@ namespace 動態問卷系統.前台
         }
 
         /// <summary>
-        /// 顯示資料
+        /// 顯示資料、判斷投票狀態(成功)
         /// </summary>
         /// <returns></returns>
         public static DataTable GetDBData()
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@"SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
-                    FROM [Outline]
+                $@"
+                  UPDATE [Outline]
+	                SET [Vote] = '已完結'
+	                WHERE [EndTime] < GETDATE()
+
+                  UPDATE [Outline]
+	                SET [Vote] = '尚未開始'
+	                WHERE [StartTime] > GETDATE()
+                  SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
+                  FROM [Outline]
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
@@ -132,7 +140,7 @@ namespace 動態問卷系統.前台
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static DataTable findData(string Title, DateTime Start, DateTime End)   //為什麼搜尋不到，SQL找得到?? =>寄件問
+        public static DataTable findData(string Title, DateTime Start, DateTime End)   //SQL找得到，為什麼搜尋不到??
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
@@ -159,7 +167,7 @@ namespace 動態問卷系統.前台
             }
         }
 
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)  //如何寫入Session or 其他方式  還有問卷的狀態，判斷時間
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)  //如何寫入Session or 其他方式  還有問卷的狀態
         {
             var item = e.CommandSource as System.Web.UI.WebControls.Button;
             var container = item.NamingContainer;

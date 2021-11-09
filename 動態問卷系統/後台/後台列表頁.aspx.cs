@@ -19,15 +19,23 @@ namespace 動態問卷系統.後台
         }
 
         /// <summary>
-        /// 顯示資料
+        /// 顯示資料、判斷投票狀態(成功)
         /// </summary>
         /// <returns></returns>
         public static DataTable GetDBData()
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@"SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
-                    FROM [Outline]
+                $@"
+                  UPDATE [Outline]
+	                SET [Vote] = '已完結'
+	                WHERE [EndTime] < GETDATE()
+
+                  UPDATE [Outline]
+	                SET [Vote] = '尚未開始'
+	                WHERE [StartTime] > GETDATE()
+                  SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
+                  FROM [Outline]
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
@@ -41,9 +49,9 @@ namespace 動態問卷系統.後台
                 return null;
             }
         }
-        
+
         /// <summary>
-        /// 新增問卷或更新問卷(問毛豆)
+        /// 新增問卷
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

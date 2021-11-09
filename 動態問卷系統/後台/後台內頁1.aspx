@@ -67,7 +67,7 @@
           <button class="tablinks" onclick="openQuestionnaire(event, 'Statistics')">統計</button>
         </div>
 
-        <div id="Questionnaire" class="tabcontent">
+        <div id="Questionnaire" class="tabcontent">  <%--問卷--%>
             <asp:Label ID="lblQuestaireName" runat="server" Text="問卷名稱"></asp:Label>&nbsp;&nbsp;
             <asp:TextBox ID="txtQuestaireName" runat="server"></asp:TextBox>
             <br />
@@ -83,26 +83,41 @@
             <asp:CheckBox ID="ckbActivated" runat="server" Checked="True" /><asp:Label ID="lblActivated" runat="server" Text="已啟用"></asp:Label>
             <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblMessage" runat="server" Visible="False" ForeColor="Red" ></asp:Label>
-            <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSent" runat="server" Text="送出" OnClick="btnSent_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="取消" OnClick="btnCancel_Click" />&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="btnSent" runat="server" Text="送出" OnClick="btnSent_Click" />
         </div>
 
-        <div id="Question" class="tabcontent">
+        <div id="Question" class="tabcontent">  <%--問題--%>
             <asp:Label ID="lblType" runat="server" Text="種類"></asp:Label>&nbsp;&nbsp;
-            <asp:DropDownList ID="ddlType" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="ddlType" runat="server">
+                <asp:ListItem Value="0">自訂問題</asp:ListItem>
+                <asp:ListItem Value="1">常用問題1</asp:ListItem>
+            </asp:DropDownList>
             <br />
             <asp:Label ID="lblQuestion" runat="server" Text="問題"></asp:Label>&nbsp;&nbsp;
-            <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>&nbsp;&nbsp;<asp:DropDownList ID="ddlChoose" runat="server"></asp:DropDownList>&nbsp;&nbsp;
+            <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox>&nbsp;&nbsp;
+            <asp:DropDownList ID="ddlChoose" runat="server">
+                <asp:ListItem Value="0">單選方塊</asp:ListItem>
+                <asp:ListItem Value="1">複選方塊</asp:ListItem>
+                <asp:ListItem Value="2">文字</asp:ListItem>
+            </asp:DropDownList>&nbsp;&nbsp;
             <asp:CheckBox ID="ckbRequired" runat="server" /><asp:Label ID="lblRequired" runat="server" Text="必填"></asp:Label>
             <br />
             <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label><p>(多個答案以；分隔)</p>&nbsp;&nbsp;
             <asp:Button ID="btnAddIn" runat="server" Text="加入" />
             <br />
-            <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" />
-            <asp:GridView ID="givQuestion" runat="server"></asp:GridView>
-            <asp:Button ID="btngivCancel" runat="server" Text="取消" Height="29px" Width="34px" /><asp:Button ID="btngivSent" runat="server" Text="送出" Height="29px" Width="34px" />
+            <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" Height="29px" Width="34px"/>
+            <asp:GridView ID="givQuestion" runat="server">
+
+            </asp:GridView>
+            <div>
+                <asp:Button ID="btngivCancel" runat="server" Text="取消"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btngivSent" runat="server" Text="送出"/>
+            </div>
+
         </div>
 
-        <div id="WriteInformation" class="tabcontent">
+        <div id="WriteInformation" class="tabcontent">  <%--填寫資料--%>
             <asp:Button ID="btnExport" runat="server" Text="匯出" />
             <asp:GridView ID="givExport" runat="server"></asp:GridView>
             <%--分頁--%>
@@ -123,7 +138,7 @@
 
         </div>
 
-        <div id="Statistics" class="tabcontent">
+        <div id="Statistics" class="tabcontent">  <%--統計--%>
           <h3>統計</h3>
         </div>
 

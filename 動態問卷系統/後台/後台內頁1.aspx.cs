@@ -42,7 +42,6 @@ namespace 動態問卷系統.後台
                 string Vote = "投票中";
                 MessageBox.Show($"提醒您問卷將送出，請確認", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Add(Heading, Content, StartT, EndT, QuestionnaireNum, Vote);
-
             }
             else 
             {
@@ -73,7 +72,7 @@ namespace 動態問卷系統.後台
             Response.Redirect("/後台/後台列表頁.aspx");
         }
         /// <summary>
-        /// 寫進資料庫
+        /// 問卷 - 寫進資料庫
         /// </summary>
         /// <param name="IDNumber"></param>
         /// <returns></returns>

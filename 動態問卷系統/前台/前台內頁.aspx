@@ -9,21 +9,34 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <div>
+            <table>
+                <tr>
+                    <td><h1>前台</h1></td>
+                    <td>
+                        <%-- 投票中
+                                時間顯示--%>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div>   <%--標題--%>
             <asp:Repeater ID="reHeading" runat="server">
                 <ItemTemplate>
-                    <h2>
-                        <%#Eval("Heading") %>
-                    </h2>
+                     <div style="text-align:center;">
+                         <h2>
+                            <%#Eval("Heading") %>
+                         </h2>
+                     </div>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
         <div>   <%--內容--%>
             <asp:Repeater ID="reContent" runat="server">
                 <ItemTemplate>
-                    <p>
+                    <h3>
                         <%#Eval("Content") %>
-                    </p>
+                    </h3>
                 </ItemTemplate>
             </asp:Repeater>
         </div>
@@ -35,7 +48,7 @@
             <asp:Label ID="lblEmail" runat="server" Text="Email："></asp:Label>
             <asp:TextBox ID="txtbEmail" runat="server" TextMode="Email"></asp:TextBox><br /><br />
             <asp:Label ID="lblAge" runat="server" Text="年齡："></asp:Label>
-            <asp:TextBox ID="txtbAge" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtbAge" runat="server" TextMode="Number"></asp:TextBox>
         </div>
         
         <asp:PlaceHolder ID="plcNoWriteData" runat="server" Visible="false">
@@ -48,7 +61,6 @@
                     <p>
                         <%#Eval("TopicDescription") %>
                     </p>
-
                 </ItemTemplate>
             </asp:Repeater>
             <asp:Repeater ID="reOptions" runat="server">
