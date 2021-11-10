@@ -167,7 +167,7 @@ namespace 動態問卷系統.前台
             }
         }
 
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)  //如何寫入Session or 其他方式  還有問卷的狀態
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)  //如何寫入Session or 其他方式  還有問卷的狀態  投票中有超連結 其餘沒有
         {
             var item = e.CommandSource as System.Web.UI.WebControls.Button;
             var container = item.NamingContainer;

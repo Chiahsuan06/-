@@ -22,9 +22,6 @@
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:TemplateField>
-                <EditItemTemplate>
-                    <asp:CheckBox ID="CheckBox1" runat="server" />
-                </EditItemTemplate>
                 <ItemTemplate>
                     <asp:CheckBox ID="CheckBox1" runat="server" />
                 </ItemTemplate>

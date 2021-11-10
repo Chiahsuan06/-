@@ -34,6 +34,7 @@ namespace 動態問卷系統.後台
                   UPDATE [Outline]
 	                SET [Vote] = '尚未開始'
 	                WHERE [StartTime] > GETDATE()
+
                   SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
                   FROM [Outline]
                 ";
@@ -63,10 +64,10 @@ namespace 動態問卷系統.後台
         /// 刪除問卷
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="e"></param>    
+        //刪除方法沒成功
         protected void ImgbtnBin_Click(object sender, ImageClickEventArgs e)
         {
-            //DBUtil db = null;  連結DB用的
             List<object> parameters = new List<object>();
             List<object> parameters_value = new List<object>();
 
@@ -83,14 +84,45 @@ namespace 動態問卷系統.後台
 
             if (parameters.Count != 0)  //寫刪除方法進DB
             {
-                //db = new DBUtil();
-                string sql = "";
                 for(int i = 0; i < parameters.Count; i++)
                 {
-                    sql += "DELECT From Outline WHERE QuestionnaireID = '" + parameters_value[i].ToString() + "';";
+                    int CHQuestionnaireID = Convert.ToInt32(parameters_value[i]);
+                    DelQuestionnaireID(CHQuestionnaireID);
                 }
-                //db.delect_pure(sql);
                 Response.Write("<Script language= 'JaveScript'> alert('刪除完成!');<Script>");
+            }
+        }
+        /// <summary>
+        /// DB刪除問卷
+        /// </summary>
+        /// <param name="QuestionnaireID"></param>
+        /// <returns></returns>
+        public static DataTable DelQuestionnaireID(int QuestionnaireID)
+        {
+            string connStr = DBHelper.GetConnectionString();
+            string dbcommand =
+                $@"  DELETE FROM [Outline] WHERE [QuestionnaireID]= @QuestionnaireID
+                     SELECT [QuestionnaireID]
+                          ,[QuestionnaireNum]
+                          ,[Heading]
+                          ,[Vote]
+                          ,[StartTime]
+                          ,[EndTime]
+                          ,[Content]
+                      FROM [Questionnaire].[dbo].[Outline]
+                ";
+
+            List<SqlParameter> list = new List<SqlParameter>();
+            list.Add(new SqlParameter("@QuestionnaireID", QuestionnaireID));
+
+            try
+            {
+                return DBHelper.ReadDataTable(connStr, dbcommand, list);
+            }
+            catch (Exception ex)
+            {
+                Logger.WriteLog(ex);
+                return null;
             }
         }
     }

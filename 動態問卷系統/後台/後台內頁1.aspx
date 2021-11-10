@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
+<%--        <style>
             body {font-family: Arial;}
 
             .tab {
@@ -58,7 +58,7 @@
             }
 
             document.getElementById("defaultOpen").click();
-        </script>
+        </script>--%>
 
         <div class="tab">
           <button class="tablinks" onclick="openQuestionnaire(event, 'Questionnaire')" id="defaultOpen">問卷</button>
@@ -103,16 +103,28 @@
             </asp:DropDownList>&nbsp;&nbsp;
             <asp:CheckBox ID="ckbRequired" runat="server" /><asp:Label ID="lblRequired" runat="server" Text="必填"></asp:Label>
             <br />
-            <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label><p>(多個答案以；分隔)</p>&nbsp;&nbsp;
-            <asp:Button ID="btnAddIn" runat="server" Text="加入" />
+            <asp:Label ID="lblOptions" runat="server" Text="回答"></asp:Label>
+            <asp:TextBox ID="txtOptions" runat="server"></asp:TextBox><p>(多個答案以；分隔)</p>&nbsp;&nbsp;
+            <asp:Button ID="btnAddIn" runat="server" Text="加入" OnClick="btnAddIn_Click" />
             <br />
-            <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" Height="29px" Width="34px"/>
-            <asp:GridView ID="givQuestion" runat="server">
-
+            <asp:ImageButton ID="ImgbtnBin" runat="server" ImageUrl="~/Images/bin.png" Height="29px" Width="34px" OnClick="ImgbtnBin_Click"/>&nbsp;&nbsp;<asp:Label ID="lblAddMessage" runat="server" ForeColor="Red"></asp:Label>
+            <asp:GridView ID="givQuestion" runat="server" AutoGenerateColumns="False" OnRowCommand="givQuestion_RowCommand">
+                <Columns>
+                    <asp:CheckBoxField />
+                    <asp:BoundField HeaderText="#" DataField="TopicNum" />
+                    <asp:BoundField HeaderText="問題" DataField="Question" />
+                    <asp:BoundField HeaderText="種類" DataField="OptionsType" />
+                    <asp:CheckBoxField HeaderText="必填" />
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <a href="ID=<%# Eval("TopicNum") %>">編輯</a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
             </asp:GridView>
             <div>
-                <asp:Button ID="btngivCancel" runat="server" Text="取消"/>&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btngivSent" runat="server" Text="送出"/>
+                <asp:Button ID="btngivCancel" runat="server" Text="取消" OnClick="btngivCancel_Click"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btngivSent" runat="server" Text="送出" OnClick="btngivSent_Click"/>
             </div>
 
         </div>
