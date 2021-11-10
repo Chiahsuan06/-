@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="後台列表頁.aspx.cs" Inherits="動態問卷系統.後台.後台列表頁" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="USList.aspx.cs" Inherits="動態問卷系統.後台.後台列表頁" %>
 
 <%@ Register Src="~/UserControl/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
 
@@ -33,7 +33,7 @@
             <asp:BoundField HeaderText="結束時間" DataField="EndTime" DataFormatString="{0:yyyy-MM-dd}"/>
             <asp:TemplateField HeaderText="觀看統計">
                 <ItemTemplate>
-                    <a href="前台統計頁.aspx?Number=<%# Eval("QuestionnaireID") %>">前往</a>
+                    <a href="CSStatistics.aspx?Number=<%# Eval("QuestionnaireID") %>">前往</a>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

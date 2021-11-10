@@ -64,7 +64,7 @@ namespace 動態問卷系統.前台
             this.Session["Phone"] = this.ltlPhone.Text;
             this.Session["Email"] = this.ltlEmail.Text;
             this.Session["Age"] = this.ltlAge.Text;
-            Response.Redirect("/前台/前台內頁.aspx");
+            Response.Redirect("/ClientSide/CSPage.aspx");
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace 動態問卷系統.前台
                 sentUserInformation(Name, Phone, Email, Age);
             }
             MessageBox.Show($"資料送出成功，即將返回列表頁", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Response.Redirect("/前台/前台列表頁.aspx");
+            Response.Redirect("/ClientSide/CSList.aspx");
         }
 
         /// <summary>

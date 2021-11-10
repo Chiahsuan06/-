@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="前台內頁.aspx.cs" Inherits="動態問卷系統.前台.前台內頁" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CSPage.aspx.cs" Inherits="動態問卷系統.前台.前台內頁" %>
 
 <!DOCTYPE html>
 

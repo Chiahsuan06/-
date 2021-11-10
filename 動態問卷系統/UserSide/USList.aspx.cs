@@ -58,7 +58,7 @@ namespace 動態問卷系統.後台
         /// <param name="e"></param>
         protected void ImgbtnAdd_Click(object sender, ImageClickEventArgs e)
         {
-            Response.Redirect("/後台/後台內頁1.aspx");
+            Response.Redirect("/UserSide/USPage.aspx");
         }
         /// <summary>
         /// 刪除問卷

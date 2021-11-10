@@ -15,8 +15,7 @@ namespace 動態問卷系統.前台
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.Request.QueryString["ID"] == null) { Response.Redirect("/前台/前台列表頁.aspx"); }
-
+            if (this.Request.QueryString["ID"] == null) { Response.Redirect("/ClientSide/CSList.aspx"); }
             string IDNumber = this.Request.QueryString["ID"];
             this.reHeading.DataSource = GetHeading(IDNumber);
             this.reHeading.DataBind();
@@ -138,7 +137,7 @@ namespace 動態問卷系統.前台
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             MessageBox.Show($"將返回列表頁", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Response.Redirect("/前台/前台列表頁.aspx");
+            Response.Redirect("/ClientSide/CSList.aspx");
         }
         
         protected void btnSent_Click(object sender, EventArgs e)
@@ -164,7 +163,7 @@ namespace 動態問卷系統.前台
                 this.Session["Age"] = this.txtbAge.Text;
 
                 MessageBox.Show($"即將前往確認頁面，請確認填寫的資訊是否正確", "確定", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Response.Redirect("/前台/前台確認頁.aspx");
+                Response.Redirect("/ClientSide/CSConfirmation.aspx");
             }
         }
     }

@@ -20,7 +20,7 @@ namespace 動態問卷系統.後台
                 this.txtStartT.Text = DateTime.Now.ToString("yyyy-MM-dd");  //預設為當日
             }
 
-            givQuestion.DataSource = this.Session["GivQuestionList"];
+            givQuestion.DataSource = this.Session["GivQuestionList"] as DataTable;
             givQuestion.DataBind();
             
             //問題部分
@@ -84,7 +84,7 @@ namespace 動態問卷系統.後台
         /// <param name="e"></param>
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/後台/後台列表頁.aspx");
+            Response.Redirect("/UserSide/USList.aspx");
         }
         /// <summary>
         /// 問卷 - 寫進資料庫
@@ -190,7 +190,10 @@ namespace 動態問卷系統.後台
             else
             { qc.Required = -1; }
 
+            
             this.Session["GivQuestionList"] = qc;
+            givQuestion.DataSource = this.Session["GivQuestionList"] as DataTable;
+            givQuestion.DataBind();
 
         }
             
@@ -206,7 +209,7 @@ namespace 動態問卷系統.後台
 
         protected void givQuestion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //if()
+
         }
 
         /// <summary>

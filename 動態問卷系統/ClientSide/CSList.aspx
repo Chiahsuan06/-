@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="前台列表頁.aspx.cs" Inherits="動態問卷系統.前台.前台列表頁" MaintainScrollPositionOnPostback="True" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CSList.aspx.cs" Inherits="動態問卷系統.前台.前台列表頁" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="~/UserControl/ucPager.ascx" TagPrefix="uc1" TagName="ucPager" %>
 
@@ -29,7 +29,7 @@
                     <asp:BoundField HeaderText="#" DataField="QuestionnaireID" />
                     <asp:TemplateField HeaderText="問卷" >
                         <ItemTemplate>
-                            <a href="前台內頁.aspx?ID=<%# Eval("QuestionnaireID") %>" id="goPage"><%# Eval("Heading") %></a>
+                            <a href="CSPage.aspx?ID=<%# Eval("QuestionnaireID") %>" id="goPage"><%# Eval("Heading") %></a>
                         </ItemTemplate>
                     </asp:TemplateField>
                     <asp:BoundField HeaderText="狀態" DataField="Vote" />
@@ -37,7 +37,7 @@
                     <asp:BoundField HeaderText="結束時間" DataField="EndTime" DataFormatString="{0:yyyy-MM-dd}"/>
                     <asp:TemplateField HeaderText="觀看統計">
                         <ItemTemplate>
-                            <a href="前台統計頁.aspx?StatisticsID=<%# Eval("QuestionnaireID") %>">前往</a>     <%--0726課程--%>
+                            <a href="CSStatistics.aspx?StatisticsID=<%# Eval("QuestionnaireID") %>">前往</a>     <%--0726課程--%>
                         </ItemTemplate>
                     </asp:TemplateField>                   
                 </Columns>

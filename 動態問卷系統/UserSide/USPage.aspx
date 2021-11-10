@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="後台內頁1.aspx.cs" Inherits="動態問卷系統.後台.後台內頁1"  %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Models/Main.Master" AutoEventWireup="true" CodeBehind="USPage.aspx.cs" Inherits="動態問卷系統.後台.後台內頁1"  %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<%--        <style>
+        <style>
             body {font-family: Arial;}
 
             .tab {
@@ -58,13 +58,13 @@
             }
 
             document.getElementById("defaultOpen").click();
-        </script>--%>
+        </script>
 
         <div class="tab">
-          <button class="tablinks" onclick="openQuestionnaire(event, 'Questionnaire')" id="defaultOpen">問卷</button>
-          <button class="tablinks" onclick="openQuestionnaire(event, 'Question')">問題</button>
-          <button class="tablinks" onclick="openQuestionnaire(event, 'WriteInformation')">填寫資料</button>
-          <button class="tablinks" onclick="openQuestionnaire(event, 'Statistics')">統計</button>
+          <button type="button" class="tablinks" onclick="openQuestionnaire(event, 'Questionnaire')" id="defaultOpen">問卷</button>
+          <button type="button" class="tablinks" onclick="openQuestionnaire(event, 'Question')">問題</button>
+          <button type="button" class="tablinks" onclick="openQuestionnaire(event, 'WriteInformation')">填寫資料</button>
+          <button type="button" class="tablinks" onclick="openQuestionnaire(event, 'Statistics')">統計</button>
         </div>
 
         <div id="Questionnaire" class="tabcontent">  <%--問卷--%>
@@ -111,9 +111,9 @@
             <asp:GridView ID="givQuestion" runat="server" AutoGenerateColumns="False" OnRowCommand="givQuestion_RowCommand">
                 <Columns>
                     <asp:CheckBoxField />
-                    <asp:BoundField HeaderText="#" DataField="TopicNum" />
-                    <asp:BoundField HeaderText="問題" DataField="Question" />
-                    <asp:BoundField HeaderText="種類" DataField="OptionsType" />
+                    <asp:BoundField HeaderText="#"  />
+                    <asp:BoundField HeaderText="問題"  />
+                    <asp:BoundField HeaderText="種類"  />
                     <asp:CheckBoxField HeaderText="必填" />
                     <asp:TemplateField>
                         <ItemTemplate>

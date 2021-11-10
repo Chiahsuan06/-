@@ -74,13 +74,13 @@
     <Content Include="jQuery\jQuery3.6.0.js" />
     <Content Include="UserControl\ucPager.ascx" />
     <Content Include="Web.config" />
-    <Content Include="前台\前台內頁.aspx" />
-    <Content Include="前台\前台列表頁.aspx" />
-    <Content Include="前台\前台確認頁.aspx" />
-    <Content Include="前台\前台統計頁.aspx" />
-    <Content Include="後台\常用問題管理.aspx" />
-    <Content Include="後台\後台內頁1.aspx" />
-    <Content Include="後台\後台列表頁.aspx" />
+    <Content Include="ClientSide\CSPage.aspx" />
+    <Content Include="ClientSide\CSList.aspx" />
+    <Content Include="ClientSide\CSConfirmation.aspx" />
+    <Content Include="ClientSide\CSStatistics.aspx" />
+    <Content Include="UserSide\USProblemManagement.aspx" />
+    <Content Include="UserSide\USPage.aspx" />
+    <Content Include="UserSide\USList.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -102,54 +102,54 @@
     <Compile Include="UserControl\ucPager.ascx.designer.cs">
       <DependentUpon>ucPager.ascx</DependentUpon>
     </Compile>
-    <Compile Include="前台\前台內頁.aspx.cs">
-      <DependentUpon>前台內頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSPage.aspx.cs">
+      <DependentUpon>CSPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="前台\前台內頁.aspx.designer.cs">
-      <DependentUpon>前台內頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSPage.aspx.designer.cs">
+      <DependentUpon>CSPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="前台\前台列表頁.aspx.cs">
-      <DependentUpon>前台列表頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSList.aspx.cs">
+      <DependentUpon>CSList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="前台\前台列表頁.aspx.designer.cs">
-      <DependentUpon>前台列表頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSList.aspx.designer.cs">
+      <DependentUpon>CSList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="前台\前台確認頁.aspx.cs">
-      <DependentUpon>前台確認頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSConfirmation.aspx.cs">
+      <DependentUpon>CSConfirmation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="前台\前台確認頁.aspx.designer.cs">
-      <DependentUpon>前台確認頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSConfirmation.aspx.designer.cs">
+      <DependentUpon>CSConfirmation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="前台\前台統計頁.aspx.cs">
-      <DependentUpon>前台統計頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSStatistics.aspx.cs">
+      <DependentUpon>CSStatistics.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="前台\前台統計頁.aspx.designer.cs">
-      <DependentUpon>前台統計頁.aspx</DependentUpon>
+    <Compile Include="ClientSide\CSStatistics.aspx.designer.cs">
+      <DependentUpon>CSStatistics.aspx</DependentUpon>
     </Compile>
-    <Compile Include="後台\常用問題管理.aspx.cs">
-      <DependentUpon>常用問題管理.aspx</DependentUpon>
+    <Compile Include="UserSide\USProblemManagement.aspx.cs">
+      <DependentUpon>USProblemManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="後台\常用問題管理.aspx.designer.cs">
-      <DependentUpon>常用問題管理.aspx</DependentUpon>
+    <Compile Include="UserSide\USProblemManagement.aspx.designer.cs">
+      <DependentUpon>USProblemManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="後台\後台內頁1.aspx.cs">
-      <DependentUpon>後台內頁1.aspx</DependentUpon>
+    <Compile Include="UserSide\USPage.aspx.cs">
+      <DependentUpon>USPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="後台\後台內頁1.aspx.designer.cs">
-      <DependentUpon>後台內頁1.aspx</DependentUpon>
+    <Compile Include="UserSide\USPage.aspx.designer.cs">
+      <DependentUpon>USPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="後台\後台列表頁.aspx.cs">
-      <DependentUpon>後台列表頁.aspx</DependentUpon>
+    <Compile Include="UserSide\USList.aspx.cs">
+      <DependentUpon>USList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="後台\後台列表頁.aspx.designer.cs">
-      <DependentUpon>後台列表頁.aspx</DependentUpon>
+    <Compile Include="UserSide\USList.aspx.designer.cs">
+      <DependentUpon>USList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

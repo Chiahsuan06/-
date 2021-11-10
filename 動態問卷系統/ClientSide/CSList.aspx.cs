@@ -111,8 +111,7 @@ namespace 動態問卷系統.前台
         {
             string connStr = DBHelper.GetConnectionString();
             string dbcommand =
-                $@"
-                  UPDATE [Outline]
+                $@"UPDATE [Outline]
 	                SET [Vote] = '已完結'
 	                WHERE [EndTime] < GETDATE()
 
@@ -146,9 +145,9 @@ namespace 動態問卷系統.前台
             string dbcommand =
                 $@" SELECT [QuestionnaireID],[Heading],[Vote],[StartTime],[EndTime]
                     FROM [Outline]
-                    WHERE [Heading] LIKE '@Title%'
-                    OR [StartTime] = @Start
-                    OR [EndTime] = @End
+                    WHERE [Heading] LIKE (@Title + '%')
+                    OR [StartTime] >= @Start
+                    OR [EndTime] <= @End
                 ";
 
             List<SqlParameter> list = new List<SqlParameter>();
